@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON.stringify & JSON.parse Example</title>
+</head>
+<body>
+
+  <script>
+    // Step 1: JavaScript object
+    const user = {
+      username: "admin",
+      role: "manager"
+    };
+
+    // Step 2: Convert object → JSON string
+    const userJSON = JSON.stringify(user);
+    console.log("JSON string:", userJSON);
+
+    // Step 3: Store JSON string in localStorage
+    localStorage.setItem("userDetails", userJSON);
+
+    // ------------------------------------
+
+    // Step 4: Retrieve JSON string from localStorage
+    const storedJSON = localStorage.getItem("userDetails");
+    console.log("Stored JSON:", storedJSON);
+
+    // Step 5: Convert JSON string → JavaScript object
+    const storedUser = JSON.parse(storedJSON);
+
+    // Step 6: Access object properties
+    console.log("Username:", storedUser.username);
+    console.log("Role:", storedUser.role);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Callback Hell Payment Demo</title>
+</head>
+<body>
+
+  <h2>Payment Processing (Callback Hell Example)</h2>
+
+  <button onclick="startPayment()">Start Payment</button>
+  <p id="output"></p>
+
+  <script>
+    // Step 1: Validate User
+    function validateUser(username, callback) {
+      setTimeout(() => {
+        document.getElementById("output").textContent = "User validated...";
+        callback(true);
+      }, 1000);
+    }
+
+    // Step 2: Process Payment
+    function processPayment(amount, callback) {
+      setTimeout(() => {
+        document.getElementById("output").textContent = "Payment processed...";
+        callback("success");
+      }, 1000);
+    }
+
+    // Step 3: Generate Invoice
+    function generateInvoice(callback) {
+      setTimeout(() => {
+        document.getElementById("output").textContent = "Invoice generated!";
+        callback("INV-001");
+      }, 1000);
+    }
+
+    // Using nested callbacks (Callback Hell)
+    function startPayment() {
+      const username = "customer1";
+      const amount = 500;
+
+      validateUser(username, function(isValid) {
+        if (isValid) {
+          processPayment(amount, function(status) {
+            if (status === "success") {
+              generateInvoice(function(invoice) {
+                document.getElementById("output").textContent =
+                  "Done! Invoice number: " + invoice;
+              });
+            }
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

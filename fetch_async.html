@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promises vs Async/Await Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin-right: 10px; padding: 8px 12px; }
+    #output { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+  <h2>Fetch Example: Promises vs Async/Await</h2>
+
+  <button onclick="fetchWithThen()">Fetch Using .then()</button>
+  <button onclick="fetchWithAsync()">Fetch Using async/await</button>
+
+  <p id="output">Click a button to fetch data...</p>
+
+  <script>
+    const url = "https://jsonplaceholder.typicode.com/todos/1";
+    const output = document.getElementById("output");
+
+    // 1. Promise style using .then()
+    function fetchWithThen() {
+      output.textContent = "Loading using .then()...";
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          output.textContent = "Data: " + JSON.stringify(data);
+        })
+        .catch(err => {
+          output.textContent = "Error: " + err;
+        });
+    }
+
+    // 2. async/await style
+    async function fetchWithAsync() {
+      output.textContent = "Loading using async/await...";
+      try {
+        const res = await fetch(url);     // wait for server response
+        const data = await res.json();     // wait for JSON parsing
+        output.textContent = "Data: " + JSON.stringify(data);
+      } catch (err) {
+        output.textContent = "Error: " + err;
+      }
+    }
+  </script>
+
+</body>
+</html>

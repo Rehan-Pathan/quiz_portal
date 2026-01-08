@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Validation (Callback)</title>
+</head>
+<body>
+
+  <h2>Login</h2>
+
+  <input type="text" id="username" placeholder="Username">
+  <br><br>
+  <input type="password" id="password" placeholder="Password">
+  <br><br>
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+
+  <script>
+    function validateUser(username, password, callback) {
+      // Simulating validation
+      if (username === "admin" && password === "1234") {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    }
+
+    function redirectUser(isValid) {
+      if (isValid) {
+        document.getElementById("msg").textContent = "Login successful! Redirecting...";
+        // window.location.href = "dashboard.html";
+      } else {
+        document.getElementById("msg").textContent = "Invalid username or password!";
+      }
+    }
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      validateUser(username, password, redirectUser);
+    }
+  </script>
+
+</body>
+</html>

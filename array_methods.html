@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Methods Combined</title>
+</head>
+<body>
+
+  <h2>Check Console Output</h2>
+
+  <script>
+    // Data
+    const users = ["Rehan", "Amit", "Sara"];
+
+    const products = [
+      { name: "Laptop", price: 50000, inStock: true },
+      { name: "Phone", price: 20000, inStock: false },
+      { name: "Tablet", price: 30000, inStock: true }
+    ];
+
+    console.log("---- forEach() ----");
+
+    // 1. forEach → welcome users
+    users.forEach((user, index, array) => {
+      console.log(`Welcome ${user} (index: ${index})`);
+    });
+
+    console.log("---- filter() ----");
+
+    // 2. filter → only available products
+    const availableProducts = products.filter((product, index, array) => {
+      return product.inStock === true;
+    });
+
+    console.log(availableProducts);
+
+    console.log("---- map() ----");
+
+    // 3. map → apply 10% discount
+    const discountedProducts = availableProducts.map((product, index, array) => {
+      return {
+        ...product,
+        price: product.price - product.price * 0.10
+      };
+    });
+
+    console.log(discountedProducts);
+
+    console.log("---- reduce() ----");
+
+    // 4. reduce → calculate cart total
+    const totalPrice = discountedProducts.reduce(
+      (total, product, index, array) => {
+        return total + product.price;
+      },
+      0
+    );
+
+    console.log("Total Cart Price:", totalPrice);
+  </script>
+
+</body>
+</html>

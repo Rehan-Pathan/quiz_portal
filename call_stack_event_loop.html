@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Call Stack & Event Loop Demo</title>
+</head>
+<body>
+
+  <button id="btn">Click Me</button>
+
+  <script>
+    const button = document.getElementById("btn");
+
+    button.addEventListener("click", () => {
+      console.log("Start");
+
+      setTimeout(() => {
+        console.log("Async Task");
+      }, 0);
+
+      console.log("End");
+    });
+  </script>
+
+</body>
+</html>

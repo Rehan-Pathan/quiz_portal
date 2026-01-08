@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Counter (Closure)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 60px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #value {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Secure Counter using Closure</h2>
+  <div id="value">0</div>
+
+  <button onclick="increase()">Increment</button>
+  <button onclick="decrease()">Decrement</button>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    function createCounter() {
+      let count = 0; // private variable
+
+      return {
+        increment: function () {
+          count++;
+          return count;
+        },
+        decrement: function () {
+          count--;
+          return count;
+        },
+        reset: function () {
+          count = 0;
+          return count;
+        }
+      };
+    }
+
+    const counter = createCounter();
+
+    function increase() {
+      document.getElementById("value").textContent = counter.increment();
+    }
+
+    function decrease() {
+      document.getElementById("value").textContent = counter.decrement();
+    }
+
+    function reset() {
+      document.getElementById("value").textContent = counter.reset();
+    }
+  </script>
+
+</body>
+</html>

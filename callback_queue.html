@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Callback Queue Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #content { font-size: 20px; margin-bottom: 20px; }
+    #ads { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div id="content">Loading main content...</div>
+  <div id="ads"></div>
+
+  <script>
+    // Simulate main content rendering
+    function loadMainContent() {
+      console.log("Main content started");
+
+      // Heavy synchronous work (blocks Call Stack)
+      for (let i = 0; i < 1e9; i++) {}
+
+      document.getElementById("content").textContent =
+        "Main content loaded ✔";
+
+      console.log("Main content finished");
+    }
+
+    // Ad loader (async)
+    function loadAds() {
+      console.log("Ads loaded");
+      document.getElementById("ads").textContent =
+        "🔥 Ads displayed here";
+    }
+
+    // Schedule ads after page load
+    setTimeout(loadAds, 0);
+
+    // Load main content
+    loadMainContent();
+  </script>
+
+</body>
+</html>

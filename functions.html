@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Function Declaration vs Arrow Function</title>
+</head>
+<body>
+  <h2>GST Calculation Example</h2>
+  <div id="results"></div>
+
+  <script>
+    const output = document.getElementById("results");
+
+    // 1️⃣ Function Declaration
+    function calculateGST(price, gstRate)
+    {
+      return price + (price * gstRate) / 100;
+    }
+
+    const price1 = 1000;
+    const gstRate1 = 18;
+    const total1 = calculateGST(price1, gstRate1);
+
+    output.innerHTML += `<p>Function Declaration: ₹${price1} + GST ${gstRate1}% = ₹${total1}</p>`;
+
+    // 2️⃣ Arrow Function
+    const calculateGSTArrow = (price, gstRate) => price + (price * gstRate) / 100;
+
+    const price2 = 2000;
+    const gstRate2 = 12;
+    const total2 = calculateGSTArrow(price2, gstRate2);
+
+    output.innerHTML += `<p>Arrow Function: ₹${price2} + GST ${gstRate2}% = ₹${total2}</p>`;
+
+    // 3️⃣ Key difference displayed
+    output.innerHTML += `<p><strong>Key Difference:</strong> Function declarations are hoisted and have their own 'this'; arrow functions are not hoisted and inherit 'this' from the surrounding scope.</p>`;
+  </script>
+</body>
+</html>
